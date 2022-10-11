@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>session反序列化漏洞 | gugugux</title><meta name="keywords" content="php反序列化,PHP漏洞"><meta name="author" content="xu"><meta name="copyright" content="xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前几天打省赛，遇到一个seesion反序列化的题，当时没做出来，今天复盘学习了一下，写个笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="session反序列化漏洞">
+<meta property="og:url" content="http://example.com/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="gugugux">
+<meta property="og:description" content="前几天打省赛，遇到一个seesion反序列化的题，当时没做出来，今天复盘学习了一下，写个笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/11/xNyqbV.jpg">
+<meta property="article:published_time" content="2021-10-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-11T11:13:20.188Z">
+<meta property="article:author" content="xu">
+<meta property="article:tag" content="php反序列化">
+<meta property="article:tag" content="PHP漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/11/xNyqbV.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'session反序列化漏洞',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-11 19:13:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="gugugux" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2022/10/11/xNyqbV.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">gugugux</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">session反序列化漏洞</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-10-27T16:00:00.000Z" title="Created 2021-10-28 00:00:00">2021-10-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-11T11:13:20.188Z" title="Updated 2022-10-11 19:13:20">2022-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">漏洞学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="session反序列化漏洞"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>前几天打省赛，遇到一个seesion反序列化的题，当时没做出来，今天复盘学习了一下，写个笔记</p>
+<span id="more"></span>
+
+<h2 id="什么是SESSION"><a href="#什么是SESSION" class="headerlink" title="什么是SESSION"></a>什么是SESSION</h2><p>首先session是什么，就是一个会话控制，这样描述很肤浅，还得往更深的层次研究，这里是我学习的一个大佬的文章，讲的很透彻<a target="_blank" rel="noopener" href="https://blog.csdn.net/h19910518/article/details/79348051">什么是session</a>(一定要看啊，不然无法理解)</p>
+<p>大概流程就是，当你打开一个页面，php会先判断你有没有sessionid，没有就生成一个id，当你结束后会生成一个文件，当下一次你再访问时，就会判断读取到你的id，php会直接根据id读取上此结束后生成的文件，把里面的东西反序列化出来。<br>这一套操作通常是用来，用户持续保持会话的，也就是用户退出页面后，再访问该页面，也能通过id访问到上回访问的资源。</p>
+<h2 id="php-session中的序列化"><a href="#php-session中的序列化" class="headerlink" title="php session中的序列化"></a>php session中的序列化</h2><p>再来讲讲php的相关序列化<br>session后产生的id文件中的内容就是一段序列化<br>然而php中的下面这个选项，可以选择序列化的方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler = php</span><br><span class="line">session.serialize_handler = php_binary</span><br><span class="line">session.serialize_handler = php_serialize</span><br></pre></td></tr></table></figure>
+<p>这三种都是他的序列化方式</p>
+<p>下面时一段源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ini_set(&#x27;session.serialize_handler&#x27;, &#x27;php_serialize&#x27;);</span><br><span class="line">session_start();</span><br><span class="line">$_SESSION[&#x27;name&#x27;] = &#x27;spoock&#x27;;</span><br><span class="line">var_dump($_SESSION);</span><br></pre></td></tr></table></figure>
+<p>在 php_serialize 引擎下，session文件中存储的数据为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:1:&#123;s:4:&quot;name&quot;;s:6:&quot;spoock&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>php 引擎下文件内容为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name|s:6:&quot;spoock&quot;;</span><br></pre></td></tr></table></figure>
+<p>php_binary 引擎下文件内容为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">names:6:&quot;spoock&quot;;</span><br></pre></td></tr></table></figure>
+<p>上面就介绍了这三种序列化的形式，理解这三种序列化很重要</p>
+<h2 id="PHP-session序列化漏洞"><a href="#PHP-session序列化漏洞" class="headerlink" title="PHP session序列化漏洞"></a>PHP session序列化漏洞</h2><p>本来这种序列化是没有漏洞的，可我们经常需要跨文件操作，当两个文件的php序列化解释器不一样时，漏洞就由此产生了</p>
+<p>由实例来解释一下吧,下面这是一段设置序列化引擎的php文件<br>同时还向session文件中写入了内容(这里使用的php_serialize引擎，要求php版本&gt;5.5.4，当时自己也是弄了半天才发现)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;session.serialize_handler&#x27;</span>, <span class="string">&#x27;php_serialize&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;session_id(): &quot;</span>.<span class="title function_ invoke__">session_id</span>().<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;ryat&#x27;</span>] = <span class="string">&#x27;|O:1:&quot;A&quot;:1:&#123;s:1:&quot;a&quot;;s:2:&quot;xx&quot;;&#125;&#x27;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后存储的session文件内容为</p>
+<p><img src="https://img-blog.csdnimg.cn/ccb908a4c3de4818855a7d27a03cd727.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54Gr54Gr54Gr5LiO6ZyN6ZyN,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>好了，就是这样一个序列化，假如当我们进入另一个网页时，该网页首先会看你有没有一个sessionid，有的话就直接根据id访问session文件，将里面的内容反序列化出来</p>
+<p>又假如这个网页使用的序列化引擎是php引擎，根据php引擎的解释，面对这段序列化他则会认为a:1:{s:4:”ryat”;s:30:”是他的对象，而”A”:1:{s:1:”a”;s:2:”xx”;}”是里面的内容<br>最后解释出来的内容也和原本的内容大相径庭了</p>
+<p>空口无凭，直接用用实例说话</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$a</span> = <span class="string">&#x27;aa&#x27;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照我们刚才的分析，最后页面输出的应该是xx对吧，最后结果也的确如此<br><img src="https://img-blog.csdnimg.cn/07838f6a05ec445ebc9755ebdf9f9a0c.png" alt="在这里插入图片描述">最后的结果就是对象A绕过了$a&#x3D;’aa’这一选项，直接输出了xx，这就是漏洞的产生</p>
+<h2 id="如何防范"><a href="#如何防范" class="headerlink" title="如何防范"></a>如何防范</h2><p>其实也没啥事，这个漏洞的根本原因就是php序列化引擎不一样导致的，只需要各个文件都用一个引擎就好了。防范也就没啥好说的了。</p>
+<h2 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h2><p>总结一下吧，当你打开一个页面，session所作出的具体反应就是先看你是否带有session id，如果有的话就直接读取你上一次会话结束后存储在本地的session文件，如果php序列化引擎不一样，解释的结果就不一样，就导致了漏洞的产生(如果没有sessionid,则会给你生成一个sessionid,以便于在关闭页面时，存储一个session文件)</p>
+<p>这就是全部内容了，其实理解了总结起来也没多少内容<br>下面是我学习过程中参考的一些大佬写的网站<br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/116246.htm">大佬1</a><br><a target="_blank" rel="noopener" href="https://blog.spoock.com/2016/10/16/php-serialize-problem/">大佬2</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/h19910518/article/details/79348051">大佬3</a></p>
+<h2 id="CTF上的应用"><a href="#CTF上的应用" class="headerlink" title="CTF上的应用"></a>CTF上的应用</h2><p>累死了，日后再更</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">xu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">http://example.com/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">php反序列化</a><a class="post-meta__tags" href="/tags/PHP%E6%BC%8F%E6%B4%9E/">PHP漏洞</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2022/10/11/xNyqbV.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/06/http%E8%B5%B0%E7%A7%81/"><img class="prev-cover" src="https://s1.ax1x.com/2022/10/11/xNyh4g.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">http走私漏洞</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/30/csrf/"><img class="next-cover" src="https://s1.ax1x.com/2022/10/11/xNy5CQ.md.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">csrf漏洞</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSESSION"><span class="toc-number">1.</span> <span class="toc-text">什么是SESSION</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-session%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">php session中的序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-session%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.</span> <span class="toc-text">PHP session序列化漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83"><span class="toc-number">4.</span> <span class="toc-text">如何防范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">CTF上的应用</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

