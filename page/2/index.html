@@ -20,7 +20,7 @@
   
     <meta property="og:type" content="website">
 <meta property="og:title" content="gugugux">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="gugugux">
 <meta property="og:locale">
 <meta property="article:author" content="John Doe">
@@ -257,15 +257,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/10/11/Breakout/" target="_self">
-          vulnhub-Breakout
+        <a href="/2021/09/13/sssrf%E6%BC%8F%E6%B4%9E/" target="_self">
+          浅析ssrf漏洞
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/11/Breakout/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/13/sssrf%E6%BC%8F%E6%B4%9E/" target="_self">
         <div>
-          Breakout第一步知道自己的ip，kali打开终端输入 1ifconfig   知道了我们的ip为192.168.223.128 用nmap工具，因为靶场和kali都在自己电脑的vmware里，所以这俩在一个网段 因此扫描自己ip的网段 1nmao -sP 192.168.223.128/24  128是本机，按照经验我们先测试133这个ip，使用nmap扫描端口 1nmap -p 1-400
+          在一个web系统中，内网存放着一些重要的文件以及资源，这些资源往往不能被公开，否则就造成安全问题ssrf漏洞就是通过服务器请求伪造访问内网文件的一种漏洞
         </div>
       </a>
 
@@ -273,40 +273,19 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-11 15:29" pubdate>
-              2022-10-11
+            <time datetime="2021-09-13 00:00" pubdate>
+              2021-09-13
             </time>
           </div>
         
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/vulnhub/" class="category-chain-item">vulnhub</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">#渗透学习</a>
+              <a href="/tags/PHP%E6%BC%8F%E6%B4%9E/">#PHP漏洞</a>
             
-              <a href="/tags/vulnhub/">#vulnhub</a>
+              <a href="/tags/SSRF/">#SSRF</a>
             
           </div>
         
@@ -320,15 +299,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/" target="_self">
-          除了文件上传还有哪些方式可以写一句话木马？
+        <a href="/2021/08/26/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" target="_self">
+          php反序列化漏洞
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/26/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" target="_self">
         <div>
-          一句话木马如果上传到服务器的话，有啥危害学过网络安全的人都知道。但是通常网上流传的方式都是通过文件上传来实现木马上传，实在太过老套，这里就教大家几个新的方式来本地生成一句话木马。(这篇笔记知识带大家入个门，想了解的话还得自己查询资料来学习) 这篇笔记也是有很多跳转内容，看不懂可以尝试看看跳转的博客，他们写的一定是比我更好
+          本篇主要是介绍什么是序列化漏洞，对序列化漏洞有个最初的了解。
         </div>
       </a>
 
@@ -336,176 +315,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-20 00:00" pubdate>
-              2021-12-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/" class="category-chain-item">漏洞学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">#特殊姿势</a>
-            
-              <a href="/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/">#一句话木马</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/11/13/groupby/" target="_self">
-          sql利用group by和with rollup绕过
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/13/groupby/" target="_self">
-        <div>
-          做ctfshow web10，感觉挺有意思的，记录下来
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-13 00:00" pubdate>
-              2021-11-13
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/sql%E6%B3%A8%E5%85%A5/">#sql注入</a>
-            
-              <a href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">#特殊姿势</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/11/06/http%E8%B5%B0%E7%A7%81/" target="_self">
-          http走私漏洞
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/06/http%E8%B5%B0%E7%A7%81/" target="_self">
-        <div>
-          学习完后发现http走私内容是真的多，文字篇幅很长，但基本都是干货。但也有很多原因，这种漏洞很容易被网络检测员忽略，一是需要对http有一定理解，二是平常的bp无法抓到相关的包，所以还得好好学
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-06 00:00" pubdate>
-              2021-11-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/" class="category-chain-item">漏洞学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">#特殊姿势</a>
-            
-              <a href="/tags/http%E8%B5%B0%E7%A7%81/">#http走私</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" target="_self">
-          session反序列化漏洞
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/28/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" target="_self">
-        <div>
-          前几天打省赛，遇到一个seesion反序列化的题，当时没做出来，今天复盘学习了一下，写个笔记
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-28 00:00" pubdate>
-              2021-10-28
+            <time datetime="2021-08-26 00:00" pubdate>
+              2021-08-26
             </time>
           </div>
         
@@ -551,15 +362,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2021/10/22/%E6%97%A0%E5%8F%82%E6%95%B0RCE%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D/" target="_self">
-          利用无参数RCE写一句话
+        <a href="/2021/08/15/sqlmap%E7%94%A8%E6%B3%95/" target="_self">
+          sqlmap用法
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/22/%E6%97%A0%E5%8F%82%E6%95%B0RCE%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/15/sqlmap%E7%94%A8%E6%B3%95/" target="_self">
         <div>
-          昨天做了一个无参数注入RCE的题，学到后面突然觉得可以做一些有趣的事然后就尝试做了一下，发现可以利用相关漏洞写一个一句话木马今天来总结一下
+          一些简单的sqlmap命令
         </div>
       </a>
 
@@ -567,50 +378,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-22 00:00" pubdate>
-              2021-10-22
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">#特殊姿势</a>
-            
-              <a href="/tags/RCE/">#RCE</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/10/14/%E5%B8%83%E5%B0%94%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" target="_self">
-          布尔盲注与时间盲注python脚本
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/14/%E5%B8%83%E5%B0%94%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" target="_self">
-        <div>
-          最近做sqli-labs的几道盲注题，写下的脚本
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-14 00:00" pubdate>
-              2021-10-14
+            <time datetime="2021-08-15 00:00" pubdate>
+              2021-08-15
             </time>
           </div>
         
@@ -633,15 +402,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2021/09/30/csrf/" target="_self">
-          csrf漏洞
+        <a href="/2021/08/08/sql%E7%9B%B2%E6%B3%A8/" target="_self">
+          sql盲注
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/30/csrf/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/08/sql%E7%9B%B2%E6%B3%A8/" target="_self">
         <div>
-          跨站请求伪造(CSRF)的攻击方式简单理解就是：攻击者盗用了用户的身份，以用户身份向客户端发送请求并被执行。造成的后果有：以用户名义发送信息，或者是修改信息、发送购物请求等。
+          在sql注入中，有一种类型就是盲注，当我们sql注入后，页面没有返回给我们有用的回显时，这时候就需要用到盲注了盲注分为两种类型，一种时布尔盲注，还有一种是时间盲注，时间盲注是建立再布尔盲注的基础上。
         </div>
       </a>
 
@@ -649,38 +418,17 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-30 00:00" pubdate>
-              2021-09-30
+            <time datetime="2021-08-08 00:00" pubdate>
+              2021-08-08
             </time>
           </div>
         
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/" class="category-chain-item">漏洞学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/csrf/">#csrf</a>
+              <a href="/tags/sql%E6%B3%A8%E5%85%A5/">#sql注入</a>
             
           </div>
         
@@ -694,15 +442,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2021/09/30/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" target="_self">
-          文件包含漏洞
+        <a href="/2021/07/13/%E5%A5%BD%E5%A4%A7%E7%9A%84%E7%81%AB%E9%BE%99%E6%9E%9C/" target="_self">
+          什么?你想要我的火龙果！
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/30/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/13/%E5%A5%BD%E5%A4%A7%E7%9A%84%E7%81%AB%E9%BE%99%E6%9E%9C/" target="_self">
         <div>
-          关于文件包含漏洞，我觉得和ssrf漏洞有点儿像，ssrf漏洞是通过curl()函数获取信息但是没有进行过滤，从而访问到内网造成危害，文件包含漏洞则是通过include()函数获取文件，攻击者输入敏感文件导致敏感文件也被输出从而产生危害。
+          我的藏宝阁好不容易来客人，居然都是冲着我前几天捡到的火龙果来的。
         </div>
       </a>
 
@@ -710,8 +458,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-30 00:00" pubdate>
-              2021-09-30
+            <time datetime="2021-07-13 00:00" pubdate>
+              2021-07-13
             </time>
           </div>
         
@@ -720,7 +468,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">#文件包含</a>
+              <a href="/tags/DLNUFCG/">#DLNUFCG</a>
             
           </div>
         
@@ -734,15 +482,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2021/09/16/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" target="_self">
-          日志包含漏洞
+        <a href="/2021/07/13/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" target="_self">
+          文件上传原理及常见的绕过方式
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/16/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/13/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" target="_self">
         <div>
-          日志包含漏洞属于是本地文件包含，同样服务器没有很好的过滤，或者是服务器配置不当导致用户进入了内网，本来常规用户是访问不了这些文件的，但由于发起访问请求的人是服务器本身，也就导致用户任意文件读取。
+          文件上传漏洞是指由于程序员未对上传的文件进行严格的验证和过滤，而导致的用户可以越过其本身权限向服务器上传恶意文件，从而获取信息造成危害
         </div>
       </a>
 
@@ -750,8 +498,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-16 00:00" pubdate>
-              2021-09-16
+            <time datetime="2021-07-13 00:00" pubdate>
+              2021-07-13
             </time>
           </div>
         
@@ -760,9 +508,87 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E7%89%B9%E6%AE%8A%E5%A7%BF%E5%8A%BF/">#特殊姿势</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">#文件上传</a>
             
-              <a href="/tags/SSRF/">#SSRF</a>
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/07/10/SQL%E6%B3%A8%E5%85%A5/" target="_self">
+          sql注入漏洞原理(1)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/10/SQL%E6%B3%A8%E5%85%A5/" target="_self">
+        <div>
+          sql注入是当今web最具有危害的漏洞之一，在web漏洞里出现的次数可以说是名列前茅本文主要是讲述sql注入漏洞的原理，这个漏洞是如何产生，以及如何防范sql漏洞
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-10 00:00" pubdate>
+              2021-07-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/sql%E6%B3%A8%E5%85%A5/">#sql注入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/07/10/SQL%E6%B3%A8%E5%85%A5%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/" target="_self">
+          sql注入原理(2)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/10/SQL%E6%B3%A8%E5%85%A5%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/" target="_self">
+        <div>
+          有sql注入漏洞产生的原理，便还有sql注入的原理，通过什么样的方式去实现sql注入，并且输入哪些命令来达到注入的效果。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-10 00:00" pubdate>
+              2021-07-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/sql%E6%B3%A8%E5%85%A5/">#sql注入</a>
             
           </div>
         
@@ -774,7 +600,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </span>
   </nav>
 

